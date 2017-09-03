@@ -17,7 +17,9 @@ namespace ShoppingSite.Entry
         private readonly string _inventoryManager = "IManager";
         private readonly string _cart = "ShoppingCart";
         private readonly string _inventory = "Inventory";
-        private readonly string _inventoryCount = "InventoryCount";
+        private readonly string _inventoryMap = "InventoryMap";
+        private readonly string _productMap = "ProductMap";
+        private readonly string _productPrice = "ProductPrice";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,18 +28,44 @@ namespace ShoppingSite.Entry
                 InventoryManagerGenerator generator = new InventoryManagerGenerator();
                 Session[_inventoryManager] = generator.InventoryManager;
                 Session[_inventory] = generator.Inventory;
-                Session[_inventoryCount] = generator.InventoryCount;
-                Session[_cart] = new ShoppingCart();
+                Session[_productMap] = generator.ProductMap;
+                Session[_inventoryMap] = generator.InventoryMap;
+                Session[_productPrice] = generator.ItemsGenerator.ItemPrice;
             }
-            List<KeyValuePair<string, int>> inventoryCount = (List<KeyValuePair<string, int>>)Session[_inventoryCount];
-            GridPanel.DataSource = inventoryCount;
-            GridPanel.DataBind();
+            populateProducts();
         }
 
-        protected void AddToCart(object sender, EventArgs e)
+        private void populateProducts()
         {
-            //FieldInfo field = (sender.GetType()).GetField("DataItemContainer");
-            //FieldInfo field1 = (field.GetType()).GetField("Cells[0].Text");
+            Dictionary<string, List<string>> inventoryMap = (Dictionary<string, List<string>>)Session[_inventoryMap];
+            Dictionary<string,int> productMap= (Dictionary<string,int>)Session[_productMap];
+            Dictionary<string, int> productPrices = (Dictionary<string, int>)Session[_productPrice]; 
+            foreach(KeyValuePair<string,List<string>> pair in inventoryMap)
+            {
+                TableCell pInfo = new TableCell();
+                TableCell pPrice = new TableCell();
+                TableCell pCount = new TableCell();
+                TableCell pAction = new TableCell();
+                string productInfo = pair.Key;
+                int productCount = pair.Value.Count;
+                int productId = productMap[productInfo];
+                int productPrice = productPrices[productInfo];
+                pInfo.Text = productInfo;
+                pPrice.Text = productPrice.ToString();
+                pCount.Text = productCount.ToString();
+                ImageButton button = new ImageButton();
+                button.Width = 130;
+                button.Height = 100;
+                button.ImageUrl = "img/cart-img.jpg";
+                button.PostBackUrl = "Cart.aspx?pid=" + productId;
+                pAction.Controls.Add(button);
+                TableRow row = new TableRow();
+                row.Cells.Add(pInfo);
+                row.Cells.Add(pPrice);
+                row.Cells.Add(pCount);
+                row.Cells.Add(pAction);
+                Products.Rows.Add(row);
+            }
         }
     }
 }

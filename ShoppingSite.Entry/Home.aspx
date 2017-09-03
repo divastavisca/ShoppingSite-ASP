@@ -10,7 +10,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:GridView ID="GridPanel" runat="server" AutoGenerateColumns="False" EditRowStyle-VerticalAlign="Middle">
+
+        <asp:Table ID="Products" runat="server" Width="100%" BorderStyle="Groove">
+            <asp:TableRow>
+                <asp:TableCell>Item</asp:TableCell>
+                <asp:TableCell>Price</asp:TableCell>
+                <asp:TableCell>Quantity</asp:TableCell>
+                <asp:TableCell>Add To Cart</asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+
+        <%--<asp:GridView ID="GridPanel" runat="server" AutoGenerateColumns="False" EditRowStyle-VerticalAlign="Middle">
             <Columns>
                 <asp:BoundField DataField="Key" HeaderText="Item" ItemStyle-VerticalAlign="Middle" />
                 <asp:BoundField DataField="Value" HeaderText="Quantity" ItemStyle-VerticalAlign="Middle" />
@@ -20,7 +30,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-        </asp:GridView>
+        </asp:GridView>--%>
     </form>
 </body>
 </html>

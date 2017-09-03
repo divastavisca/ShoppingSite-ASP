@@ -8,8 +8,8 @@ namespace ShoppingSite.Core
 {
     public class Dispachment
     {
-        public string ItemId { get; }
-        public DateTime DispachTime { get; }
+        public string ItemId { get; private set; }
+        public DateTime DispachTime { get; private set; }
 
         public Dispachment(string itemId,DateTime dispatchTime)
         {

@@ -10,7 +10,7 @@
 namespace ShoppingSite.Entry {
     
     
-    public partial class Home {
+    public partial class PlaceOrder {
         
         /// <summary>
         /// form1 control.
@@ -22,12 +22,21 @@ namespace ShoppingSite.Entry {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Products control.
+        /// OrderSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Products;
+        protected global::System.Web.UI.WebControls.Label OrderSummary;
+        
+        /// <summary>
+        /// Pay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Pay;
     }
 }

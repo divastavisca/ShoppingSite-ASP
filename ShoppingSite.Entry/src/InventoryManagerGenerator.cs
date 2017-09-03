@@ -10,20 +10,23 @@ namespace ShoppingSite.Entry.src
 {
     public class InventoryManagerGenerator
     {
-        public InventoryManager InventoryManager { get; }
-        public Inventory Inventory { get; }
-        public Dictionary<string,List<string>> InventoryMap { get; }
-        public List<KeyValuePair<string,int>> InventoryCount { get; }
+        public InventoryManager InventoryManager { get; private set; }
+        public Inventory Inventory { get; private set; }
+        public Dictionary<string, List<string>> InventoryMap { get; private set; }
+        public Dictionary<string, int> ProductMap { get; private set; }
 
+        public ItemsGenerator ItemsGenerator { get; private set; }
         public InventoryManagerGenerator()
         {
             InventoryGenerator inventory = new InventoryGenerator();
+            ItemsGenerator = inventory.ItemsGenerator;
+            ProductMap = new Dictionary<string, int>();
             Inventory = inventory.Inventory;
             InventoryMap = inventory.ItemsGenerator.ItemMap;
-            InventoryCount = new List<KeyValuePair<string, int>>();
-            foreach (KeyValuePair<string,List<string>> keyValue in InventoryMap)
+            int i = 1;
+            foreach (string key in InventoryMap.Keys)
             {
-                InventoryCount.Add(new KeyValuePair<string, int>(keyValue.Key,keyValue.Value.Count));
+                ProductMap.Add(key,i++);
             }
             Dictionary<string, Dispachment> inventoryLog = new Dictionary<string, Dispachment>();
             InventoryManager= new InventoryManager(Inventory, inventory.ItemsGenerator.ItemMap, inventoryLog);

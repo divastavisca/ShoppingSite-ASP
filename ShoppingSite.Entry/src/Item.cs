@@ -6,6 +6,7 @@ namespace ShoppingSite.Entry.src
     {
         public string Id;
         public string Info;
+        public double Price;
 
         public string GetItemId()
         {
@@ -17,9 +18,10 @@ namespace ShoppingSite.Entry.src
             return Info;
         }
 
-        public Item(string id)
+        public Item(string id,double price)
         {
             Id = id;
+            Price = price;
         }
     }
 }

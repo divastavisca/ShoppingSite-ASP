@@ -8,16 +8,17 @@ namespace ShoppingSite.Core
 {
     public class Customer
     {
-        public string CustomerId { get; }
+        public string CustomerId { get; private set; }
 
-        public Name CustomerName { get; }
+        public Name CustomerName { get; private set; }
 
-        public List<Address> AddressList { get; }
+        public List<Address> AddressList { get; private set; }
 
-        public string ContactDetails { get; }
+        public string ContactDetails { get; private set; }
 
-        public Customer(Name customerName, List<Address> addressList,string customerContact)
+        public Customer(string customerId,Name customerName, List<Address> addressList,string customerContact)
         {
+            CustomerId = customerId;
             CustomerName = customerName;
             AddressList = addressList;
             ContactDetails = customerContact;

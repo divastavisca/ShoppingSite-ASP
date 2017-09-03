@@ -8,15 +8,15 @@ namespace ShoppingSite.Core
 {
     public class Order
     {
-        public string OrderId { get; }
+        public string OrderId { get; private set; }
 
-        public List<IItem> Items { get; }
-       
-        public DateTime OrderDate { get; }
+        public List<IItem> Items { get; private set; }
 
-        public double OrderAmount { get; }
+        public DateTime OrderDate { get; private set; }
 
-        public string CustomerId { get; }
+        public double OrderAmount { get; private set; }
+
+        public string CustomerId { get; private set; }
 
         public Order(string orderId,List<IItem> orderItems,DateTime orderTime,double orderAmount,string customerId)
         {

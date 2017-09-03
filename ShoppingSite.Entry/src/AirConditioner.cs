@@ -4,7 +4,7 @@ namespace ShoppingSite.Entry.src
 {
     public class AirConditioner : Item, IItem
     {
-        public AirConditioner(string id, string info) : base(id)
+        public AirConditioner(string id, string info,double price) : base(id,price)
         {
             Info = info;
         }

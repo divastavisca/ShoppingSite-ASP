@@ -8,14 +8,14 @@ namespace ShoppingSite.Core
 {
     public class Address
     {
-        public string PlotNo { get; }
-        public string Locality { get; }
-        public string Street { get; }
-        public string City { get; }
-        public string State { get; }
-        public string Country { get; }
-        public string PinCode { get; }
-        public string LandMark { get; }
+        public string PlotNo { get; private set; }
+        public string Locality { get; private set; }
+        public string Street { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string Country { get; private set; }
+        public string PinCode { get; private set; }
+        public string LandMark { get; private set; }
 
         public static bool IsPinCodeValid(string pinCode)
         {
